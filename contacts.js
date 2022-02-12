@@ -25,7 +25,6 @@ async function removeContact(contactId) {
   const indexDeleteContact = contacts.findIndex(
     (contact) => contact.id === contactId
   );
-
   if (indexDeleteContact === -1) {
     return null;
   }
@@ -36,10 +35,9 @@ async function removeContact(contactId) {
   return deletedContact;
 }
 
-async function addContact(name, email, phone) {
+async function addContact(name, phone, email) {
   const contacts = await readFile(contactsPath);
-
-  const newContact = { id: randomUUID(), name, email, phone };
+  const newContact = { id: randomUUID(), name, phone, email };
   contacts.push(newContact);
 
   fs.writeFile(contactsPath, JSON.stringify(contacts, null, 2));
